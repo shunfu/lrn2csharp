@@ -52,6 +52,7 @@ namespace HandTracking
                 return;
             }
 
+            // this is the built-in sensor chooser, for the nice UI, 
             this.sensorChooser = new KinectSensorChooser();
             this.sensorChooser.KinectChanged += SensorChooserOnKinectChanged;
             this.sensorChooserUi.KinectSensorChooser = this.sensorChooser;
