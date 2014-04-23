@@ -220,7 +220,8 @@ namespace HandTracking
                         dump.AppendLine("    HandEventType: " + hand.HandEventType);
                         dump.AppendLine("    LastHandEventType: " + lastHandEvent);
                         dump.AppendLine("    IsActive: " + hand.IsActive);
-                        dump.AppendLine("    IsPrimaryForUser: " + hand.IsPrimaryForUser);
+                        // dump.AppendLine("    IsPrimaryForUser: " + hand.IsPrimaryForUser);
+                        dump.AppendLine("    IsPrimaryForUser: (always true)");
                         dump.AppendLine("    IsInteractive: " + hand.IsInteractive);
                         dump.AppendLine("    PressExtent: " + hand.PressExtent.ToString("N3"));
                         dump.AppendLine("    IsPressed: " + hand.IsPressed);
