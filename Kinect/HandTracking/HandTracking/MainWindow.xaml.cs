@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Kinect;
 using Microsoft.Kinect.Toolkit;
+using Microsoft.Kinect.Toolkit.Controls;
 using Microsoft.Kinect.Toolkit.Interaction;
 
 namespace HandTracking
@@ -32,10 +33,42 @@ namespace HandTracking
         private Skeleton[] _skeletons; //the skeletons 
         private UserInfo[] _userInfos; //the information about the interactive users
 
+        //Variable to track GripInterationStatus
+        bool isGripinInteraction = false;
+
+        private void OnQuery(object sender, QueryInteractionStatusEventArgs handPointerEventArgs)
+        {
+
+            //If a grip detected change the cursor image to grip
+            if (handPointerEventArgs.HandPointer.HandEventType == HandEventType.Grip)
+            {
+                isGripinInteraction = true;
+                handPointerEventArgs.IsInGripInteraction = true;
+            }
+
+           //If Grip Release detected change the cursor image to open
+            else if (handPointerEventArgs.HandPointer.HandEventType == HandEventType.GripRelease)
+            {
+                isGripinInteraction = false;
+                handPointerEventArgs.IsInGripInteraction = false;
+            }
+
+            //If no change in state do not change the cursor
+            else if (handPointerEventArgs.HandPointer.HandEventType == HandEventType.None)
+            {
+                handPointerEventArgs.IsInGripInteraction = isGripinInteraction;
+            }
+
+            handPointerEventArgs.Handled = true;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
             Loaded += OnLoaded;
+
+            // grip handler
+            KinectRegion.AddQueryInteractionStatusHandler(kinectButton, OnQuery);
         }
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)

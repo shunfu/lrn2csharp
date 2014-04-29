@@ -7,6 +7,7 @@
         <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="sensorChooserUi" />
         <k:KinectUserViewer VerticalAlignment="Top" HorizontalAlignment="Center" k:KinectRegion.KinectRegion="{Binding ElementName=kinectRegion}" Height="310" UserColoringMode="Manual" Margin="278,10,10,0" Width="229" />
         <k:KinectRegion Name="kinectRegion">
+            <k:KinectTileButton Label="Test" Name="kinectButton"></k:KinectTileButton>
         </k:KinectRegion>
         <Viewbox Name="view" Margin="10,10,10,10">
             <TextBlock Name="tb" FontFamily="Lucida Console" Text="Initializing..." />
